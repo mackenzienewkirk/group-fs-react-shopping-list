@@ -3,7 +3,7 @@ const pg = require('pg');
 const pool = new pg.Pool({
     host: 'localhost',
     port: 5432,
-    database: 'fs-react-shopping', 
+    database: 'group_shopping_list_app', 
 });
 
 module.exports = pool;
