@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const pool = require('../modules/pool.js');
 
-itemRouter.get('/', (req,res) => {
+router.get('/', (req,res) => {
     const sqlQueryText = `SELECT * FROM
     "shopping_list" ORDER BY is_purchased, ORDER BY "name" DESC;`
     pool.query(sqlQueryText)
@@ -19,4 +19,4 @@ itemRouter.get('/', (req,res) => {
 
 
 
-module.exports = item.router; 
+module.exports = router; 
