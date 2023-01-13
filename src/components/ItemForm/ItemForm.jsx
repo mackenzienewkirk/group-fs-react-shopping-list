@@ -30,7 +30,7 @@ function ItemForm ( {getItems} ){
             addItem();
         }
         else {
-          alert('The new guest needs a name!');
+          alert('what do you want to purchase');
         }
       }
       return(

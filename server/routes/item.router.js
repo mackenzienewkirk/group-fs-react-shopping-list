@@ -18,18 +18,8 @@ router.get('/', (req,res) => {
 
 
 
-// router.put('/items/keyid?', (req, res) => {
-//     const idToUpdate = req.params.id;  //figure out keys
-//     const newRender = req.body.render;  //figure out react put
-    
-//     let sqlQuery = `
-//         UPDATE "shopping_list"
-//         SET "is_purchased"=$1
-//         WHERE "id"=$2
-//     `
-//     let sqlValues = [purchaseChange, idToUpdate];
 
-// itemRouter
+
 
 // Setup a POST route to add a new item to the database
 router.post('/', (req, res) => {
@@ -50,15 +40,24 @@ router.post('/', (req, res) => {
 })
 
 
-
-//     pool.query(sqlQuery, sqlValues)
-//         .then((dbRes) => {
-//             res.sendStatus(200);
-//         })
-//         .catch((dbErr) => {
-//             console.log('Error in render PUT', dbErr);
-//         });
-// });
+router.put('/id', (req, res) => {
+    const idToUpdate = req.params.id;  //figure out keys
+    const purchaseChange = 'true';  
+    
+    let sqlQuery = `
+        UPDATE "shopping_list"
+        SET "is_purchased"=$1
+        WHERE "id"=$2
+    `
+    let sqlValues = [purchaseChange, idToUpdate];
+    pool.query(sqlQuery, sqlValues)
+        .then((dbRes) => {
+            res.sendStatus(200);
+        })
+        .catch((dbErr) => {
+            console.log('Error in render PUT', dbErr);
+        });
+});
 
 
 module.exports = router; 
