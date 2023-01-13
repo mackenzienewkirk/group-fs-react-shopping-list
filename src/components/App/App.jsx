@@ -1,11 +1,11 @@
 import React from 'react';
-<<<<<<< HEAD
-import { useState } from 'react';
-import axios from 'axios';
-=======
+
+
+
+
 import axios from 'axios';
 import { useState, useEffect } from 'react';
->>>>>>> b2e96bdf724dac3ab029fd06275e5cbb7e246322
+
 import Header from '../Header/Header.jsx'
 import ItemList from '../ItemList/ItemList.jsx'
 import ItemForm from '../ItemForm/ItemForm.jsx';
