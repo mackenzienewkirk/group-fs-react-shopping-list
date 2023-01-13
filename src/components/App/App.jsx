@@ -1,8 +1,4 @@
 import React from 'react';
-
-
-
-
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 
@@ -36,7 +32,7 @@ function App() {
                 <p>Under Construction...</p>
                 {/* <ItemForm getItems={getItems} /> */}
                 <ItemForm getItems={getItems} />
-                <ItemList itemList={itemList} />
+                <ItemList itemList={itemList} getItems={getItems}/>
                 {/* <ItemPurchase getItems={getItems} /> */}
             </main>
         </div>
