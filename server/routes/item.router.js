@@ -16,20 +16,9 @@ router.get('/', (req,res) => {
         })
 });
 
-router.post('/', (req, res) => {
-    const item = req.body;
-    const sqlText = `INSERT INTO SHOPPING_LIST 
-    ("name", "quantity", "unit", "is_purchased")
-    VALUES ($1, $2, $3, $4)`
-    pool.query(sqlText, [item.name, item.quantity, item.unit, item.is_purchased])
-        .then((response) => {
-            console.log('Added item to database', response);
-            res.sendStatus(201);
-        })
-        .catch((error) => {
-            console.log('Error in database POST', error);
-            res.sendStatus(500);
-        })
-})
+// itemRouter
+
+
+
 
 module.exports = router; 
