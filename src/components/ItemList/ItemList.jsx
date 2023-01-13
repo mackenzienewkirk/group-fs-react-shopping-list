@@ -3,6 +3,18 @@ import axios from 'axios';
 import './ItemList.css';
 //import ButtonPurchase from '../ButtonPurchase/ButtonPurchase';
 
+function ItemList({ itemList }, { getItems }){
+
+    //! function deleteItem(id) {
+    //     axios.delete (`/items/${id}`, { id: id })
+    //     .then ((res) => {
+    //         getItems();
+    //         res.sendStatus(204);
+    //     }).catch((error) => {
+    //         console.log('Error in DeleteItem', error);
+    //     })
+    // };
+
 
 const handleSubmit = (event) => {
     event.preventDefault();
@@ -30,6 +42,7 @@ const handleSubmit = (event) => {
   }
 
 function ItemList({ itemList }){
+
     return (
         <><h2>Items</h2><table>
             <thead>
@@ -37,7 +50,8 @@ function ItemList({ itemList }){
                     <th>Name</th>
                     <th>Quantity</th>
                     <th>unit</th>
-                    <th>is_purchased</th>
+                    <th>Mark as Purchased/Delete Item</th>
+                    
                 </tr>
             </thead>
             <tbody>
@@ -47,10 +61,14 @@ function ItemList({ itemList }){
                         <td>{item.name}</td>
                         <td>{item.quantity}</td>
                         <td>{item.unit}</td>
+
                         {/* <td>{String(item.is_purchased)}</td> */}
                     <td> <form onSubmit={ButtonPurchase}>
                         <button>Purchase</button>
                         </form></td>
+
+                      
+
                     </tr>
                 ))}
             </tbody>

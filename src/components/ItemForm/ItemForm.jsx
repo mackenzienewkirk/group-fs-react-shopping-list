@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import axios from 'axios';
+import './ItemForm.css'
 
 function ItemForm ( {getItems} ){
     const [newItemName, setNewItemName] = useState('');
@@ -35,31 +36,44 @@ function ItemForm ( {getItems} ){
       }
       return(
         <form onSubmit={handleSubmit}>
-            <label>
-            Name
-            </label>
+              <div className="titleDiv">
+                Add an Item:
+              </div>
+            <div className="inputDiv">
+            <label className="inputs">
+            Item:
             <input
             type="text"
-            placeholder="Name"
+            // placeholder="Name"
             value={newItemName}
             onChange={(evt) => setNewItemName(evt.target.value)}
             />
+            </label>
+            <label className="inputs">
+            Quantity
             <input
             type="text"
-            placeholder="Quantity"
+            // placeholder="Quantity"
             value={newItemQuantity}
             onChange={(evt) => setNewItemQuantity(evt.target.value)}
             />
+            </label>
+            <label className="inputs">
+              Unit
             <input
             type="text"
-            placeholder="Unit"
+            // placeholder="Unit"
             value={newItemUnit}
             onChange={(evt) => setNewItemUnit(evt.target.value)}
             />
+            </label>
+            </div>
             <div>
-            Has this been purchased
-            <div >
-                <div>
+            <div className="purchaseLabel">
+            Has this been purchased?
+            </div>
+            <div className="purchaseDiv">
+                <div className="purchaseResponse">
                 <label>
                     <input
                     type="radio"
@@ -70,8 +84,6 @@ function ItemForm ( {getItems} ){
                     />
                     Yes, this item has been purchased.
                 </label>
-                </div>
-                <div>
                 <label>
                     <input
                     type="radio"
@@ -85,7 +97,7 @@ function ItemForm ( {getItems} ){
                 </div>
             </div>
             </div>
-            <button type="submit">Add Item</button>
+            <button type="submit" className="addItem">Add Item</button>
         </form>
     )
 }
