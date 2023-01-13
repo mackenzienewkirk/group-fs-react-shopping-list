@@ -1,6 +1,5 @@
 import React from 'react';
 import axios from 'axios';
-import DeleteItem from '../DeleteItem/DeleteItem.jsx'
 import './ItemList.css';
 
 const buyItemButton = (id) => {
@@ -17,19 +16,26 @@ const buyItemButton = (id) => {
     .catch((err) => {
         console.log('markTodoComplete error:', err);
     })
-}
+};
+
+const deleteItemButton = (id) => {
+        axios({
+            method: 'DELETE',
+            url: '/items/${id}',
+            data: {
+                id,
+            }
+        })
+        .then ((res) => {
+            getItems();
+        }).catch((error) => {
+            console.log('Error in DeleteItem', error);
+        })
+    };
 
 function ItemList({ itemList }, { getItems }){
 
-    //! function deleteItem(id) {
-    //     axios.delete (`/items/${id}`, { id: id })
-    //     .then ((res) => {
-    //         getItems();
-    //         res.sendStatus(204);
-    //     }).catch((error) => {
-    //         console.log('Error in DeleteItem', error);
-    //     })
-    // };
+    
 
     return (
         <><h2>Items</h2><table>
@@ -38,7 +44,7 @@ function ItemList({ itemList }, { getItems }){
                     <th>Name</th>
                     <th>Quantity</th>
                     <th>unit</th>
-                    <th>Mark as Purchased/Delete Item</th>
+                    <th>Mark as Bought/Delete Item</th>
                     
                 </tr>
             </thead>
@@ -48,7 +54,10 @@ function ItemList({ itemList }, { getItems }){
                         <td>{item.name}</td>
                         <td>{item.quantity}</td>
                         <td>{item.unit}</td>
-                        <td><button onClick={()=>buyItemButton(item.id)}>Buy</button></td>
+                        <td>
+                        <button onClick={()=>buyItemButton(item.id)}>Buy</button>
+                        <button onClick={()=> deleteItemButton(item.id)}>Delete</button>
+                        </td>
                     </tr>
                 ))}
             </tbody>

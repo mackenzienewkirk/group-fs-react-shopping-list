@@ -50,20 +50,20 @@ router.put('/:id', (req, res) => {
     });
 });
 
-//! router.delete(`/:id`, (req, res) => {
-//     let id = req.params.id;
-//     let sqlQuery = `
-//     DELETE FROM "shopping_list"
-//     WHERE "id"=$1;
-//     `
-//     pool.query(sqlQuery, [id])
-//     .then((dbRes) => {
-//         res.sendStatus(204);
-//     }).catch((dbErr) => {
-//         console.log(`Error in /items router DELETE`, dbErr);
-//         res.sendStatus(500);
-//     });
-// });
+router.delete(`/:id`, (req, res) => {
+    let id = req.params.id;
+    let sqlQuery = `
+    DELETE FROM "shopping_list"
+    WHERE "id"=$1;
+    `
+    pool.query(sqlQuery, [id])
+    .then((dbRes) => {
+        res.sendStatus(204);
+    }).catch((dbErr) => {
+        console.log(`Error in /items router DELETE`, dbErr);
+        res.sendStatus(500);
+    });
+});
 
 
 module.exports = router; 
