@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { useState } from 'react';
 import axios from 'axios';
 import './ItemForm.css'
@@ -102,3 +103,5 @@ function ItemForm ( {getItems} ){
     )
 }
 export default ItemForm;
+=======
+>>>>>>> 7a78806a8d25f7f628e6c76a8b781a026a11cdbb

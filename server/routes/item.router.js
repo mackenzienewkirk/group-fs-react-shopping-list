@@ -41,14 +41,14 @@ router.post('/', (req, res) => {
 })
 router.put('/:id', (req, res) => {
     const idToUpdate = req.params.id;  //figure out keys
-    const newRender = req.body.render;  //figure out react put
+    const buyItemButton = 'true';  //figure out react put
     
     let sqlQuery = `
         UPDATE "shopping_list"
         SET "is_purchased"=$1
         WHERE "id"=$2
     `
-    let sqlValues = [purchaseChange, idToUpdate];
+    let sqlValues = [buyItemButton, idToUpdate];
         pool.query(sqlQuery, sqlValues)
         .then((dbRes) => {
         res.sendStatus(200);

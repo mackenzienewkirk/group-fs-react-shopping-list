@@ -31,7 +31,8 @@ function App() {
                 <p>Under Construction...</p>
                 {/* <ItemForm getItems={getItems} /> */}
                 <ItemForm getItems={getItems} />
-                <ItemList itemList={itemList} getItems={getItems} />
+                <ItemList itemList={itemList} getItems={getItems}/>
+
                 {/* <ItemPurchase getItems={getItems} /> */}
             </main>
         </div>

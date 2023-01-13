@@ -1,7 +1,24 @@
 import React from 'react';
 import axios from 'axios';
+import DeleteItem from '../DeleteItem/DeleteItem.jsx'
 import './ItemList.css';
 //import ButtonPurchase from '../ButtonPurchase/ButtonPurchase';
+
+const buyItemButton = (id) => {
+    axios({
+        method: 'PUT',
+        url: `/items/${id}`,
+        data :{
+            is_purchased: true,
+        },
+    })
+    .then((res) => {
+        getItems();
+    })
+    .catch((err) => {
+        console.log('markTodoComplete error:', err);
+    })
+}
 
 function ItemList({ itemList }, { getItems }){
 
@@ -61,6 +78,7 @@ function ItemList({ itemList }){
                         <td>{item.name}</td>
                         <td>{item.quantity}</td>
                         <td>{item.unit}</td>
+<<<<<<< HEAD
 
                         {/* <td>{String(item.is_purchased)}</td> */}
                     <td> <form onSubmit={ButtonPurchase}>
@@ -69,6 +87,9 @@ function ItemList({ itemList }){
 
                       
 
+=======
+                        <td><button onClick={()=>buyItemButton(item.id)}>Buy</button></td>
+>>>>>>> 7a78806a8d25f7f628e6c76a8b781a026a11cdbb
                     </tr>
                 ))}
             </tbody>
