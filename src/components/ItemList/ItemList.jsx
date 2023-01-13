@@ -1,4 +1,5 @@
 import React from 'react';
+import DeleteItem from '../DeleteItem/DeleteItem.jsx'
 import './ItemList.css';
 
 
@@ -19,7 +20,7 @@ function ItemList({ itemList }){
                         <td>{item.name}</td>
                         <td>{item.quantity}</td>
                         <td>{item.unit}</td>
-                        <td>{String(item.is_purchased)}</td>
+                        {item.is_purchased ? <td>Purchased</td> : <td><button onClick=<DeleteItem id={item.id}/>></button>Mark as Purchased<button></button></td>}
                     </tr>
                 ))}
             </tbody>
