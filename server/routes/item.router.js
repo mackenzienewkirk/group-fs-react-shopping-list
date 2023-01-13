@@ -31,7 +31,6 @@ router.post('/', (req, res) => {
             res.sendStatus(500); // Good server always responds
         })
 })
-
 router.put('/:id', (req, res) => {
     const idToUpdate = req.params.id;  //figure out keys
     const newRender = req.body.render;  //figure out react put
@@ -48,6 +47,21 @@ router.put('/:id', (req, res) => {
     })
         .catch((dbErr) => {
         console.log('Error in render PUT', dbErr);
+    });
+});
+
+router.delete(`/:id`, (req, res) => {
+    let id = req.params.id;
+    let sqlQuery = `
+    DELETE FROM "shopping_list"
+    WHERE "id"=$1;
+    `
+    pool.query(sqlQuery, [id])
+    .then((dbRes) => {
+        res.sendStatus(204);
+    }).catch((dbErr) => {
+        console.log(`Error in /items router DELETE`, dbErr);
+        res.sendStatus(500);
     });
 });
 
