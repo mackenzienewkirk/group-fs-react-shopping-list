@@ -1,20 +1,36 @@
 import React from 'react';
-import { useState } from 'react';
-
+import axios from 'axios';
+import { useState, useEffect } from 'react';
 import Header from '../Header/Header.jsx'
 import ItemList from '../ItemList/ItemList.jsx'
 import './App.css';
 
 function App() {
-    let [ItemList, setItemList] = useState([]);
+
+    const [itemList, setItemList] = useState([]);
+    useEffect(() => {
+        getItems()
+    }, [])
+    const getItems = () => {
+        axios.get('/items')
+        .then(response => {
+            setItemList(response.data)
+        })
+            .catch((error) => {
+        alert('Unable to get shopping list.');
+        console.log('Error in GET', error);
+        })
+    }
 
 
-function App() {
     return (
         <div className="App">
             <Header />
             <main>
                 <p>Under Construction...</p>
+                {/* <ItemForm getItems={getItems} /> */}
+                <ItemList itemList={itemList} />
+                {/* <ItemPurchase getItems={getItems} /> */}
             </main>
         </div>
     );
