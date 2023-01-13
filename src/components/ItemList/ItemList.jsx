@@ -1,6 +1,5 @@
 import React from 'react';
 import axios from 'axios';
-import DeleteItem from '../DeleteItem/DeleteItem.jsx'
 import './ItemList.css';
 //import ButtonPurchase from '../ButtonPurchase/ButtonPurchase';
 
@@ -18,19 +17,26 @@ const buyItemButton = (id) => {
     .catch((err) => {
         console.log('markTodoComplete error:', err);
     })
-}
+};
+
+const deleteItemButton = (id) => {
+        axios({
+            method: 'DELETE',
+            url: '/items/${id}',
+            data: {
+                id,
+            }
+        })
+        .then ((res) => {
+            getItems();
+        }).catch((error) => {
+            console.log('Error in DeleteItem', error);
+        })
+    };
 
 function ItemList({ itemList }, { getItems }){
 
-    //! function deleteItem(id) {
-    //     axios.delete (`/items/${id}`, { id: id })
-    //     .then ((res) => {
-    //         getItems();
-    //         res.sendStatus(204);
-    //     }).catch((error) => {
-    //         console.log('Error in DeleteItem', error);
-    //     })
-    // };
+    
 
 
 const handleSubmit = (event) => {
@@ -67,7 +73,7 @@ function ItemList({ itemList }){
                     <th>Name</th>
                     <th>Quantity</th>
                     <th>unit</th>
-                    <th>Mark as Purchased/Delete Item</th>
+                    <th>Mark as Bought/Delete Item</th>
                     
                 </tr>
             </thead>
@@ -78,18 +84,10 @@ function ItemList({ itemList }){
                         <td>{item.name}</td>
                         <td>{item.quantity}</td>
                         <td>{item.unit}</td>
-<<<<<<< HEAD
-
-                        {/* <td>{String(item.is_purchased)}</td> */}
-                    <td> <form onSubmit={ButtonPurchase}>
-                        <button>Purchase</button>
-                        </form></td>
-
-                      
-
-=======
-                        <td><button onClick={()=>buyItemButton(item.id)}>Buy</button></td>
->>>>>>> 7a78806a8d25f7f628e6c76a8b781a026a11cdbb
+                        <td>
+                        <button onClick={()=>buyItemButton(item.id)}>Buy</button>
+                        <button onClick={()=> deleteItemButton(item.id)}>Delete</button>
+                        </td>
                     </tr>
                 ))}
             </tbody>

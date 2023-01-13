@@ -16,14 +16,6 @@ router.get('/', (req,res) => {
         })
 });
 
-<<<<<<< HEAD
-
-
-
-
-
-=======
->>>>>>> 765d8efb7945a2479b761519963fe10ff2186cc3
 // Setup a POST route to add a new item to the database
 router.post('/', (req, res) => {
     const item = req.body;
@@ -58,42 +50,19 @@ router.put('/:id', (req, res) => {
     });
 });
 
-<<<<<<< HEAD
-
-router.put('/id', (req, res) => {
-    const idToUpdate = req.params.id;  //figure out keys
-    const purchaseChange = 'true';  
-    
+router.delete(`/:id`, (req, res) => {
+    let id = req.params.id;
     let sqlQuery = `
-        UPDATE "shopping_list"
-        SET "is_purchased"=$1
-        WHERE "id"=$2
+    DELETE FROM "shopping_list"
+    WHERE "id"=$1;
     `
-    let sqlValues = [purchaseChange, idToUpdate];
-    pool.query(sqlQuery, sqlValues)
-        .then((dbRes) => {
-            res.sendStatus(200);
-        })
-        .catch((dbErr) => {
-            console.log('Error in render PUT', dbErr);
-        });
+    pool.query(sqlQuery, [id])
+    .then((dbRes) => {
+        res.sendStatus(204);
+    }).catch((dbErr) => {
+        console.log(`Error in /items router DELETE`, dbErr);
+        res.sendStatus(500);
+    });
 });
-=======
-//! router.delete(`/:id`, (req, res) => {
-//     let id = req.params.id;
-//     let sqlQuery = `
-//     DELETE FROM "shopping_list"
-//     WHERE "id"=$1;
-//     `
-//     pool.query(sqlQuery, [id])
-//     .then((dbRes) => {
-//         res.sendStatus(204);
-//     }).catch((dbErr) => {
-//         console.log(`Error in /items router DELETE`, dbErr);
-//         res.sendStatus(500);
-//     });
-// });
->>>>>>> 765d8efb7945a2479b761519963fe10ff2186cc3
-
 
 module.exports = router; 
