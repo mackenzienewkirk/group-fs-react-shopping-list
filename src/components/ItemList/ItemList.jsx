@@ -18,7 +18,19 @@ const buyItemButton = (id) => {
         console.log('markTodoComplete error:', err);
     })
 }
-function ItemList({ itemList }){
+
+function ItemList({ itemList }, { getItems }){
+
+    //! function deleteItem(id) {
+    //     axios.delete (`/items/${id}`, { id: id })
+    //     .then ((res) => {
+    //         getItems();
+    //         res.sendStatus(204);
+    //     }).catch((error) => {
+    //         console.log('Error in DeleteItem', error);
+    //     })
+    // };
+
     return (
         <><h2>Items</h2><table>
             <thead>
@@ -26,7 +38,8 @@ function ItemList({ itemList }){
                     <th>Name</th>
                     <th>Quantity</th>
                     <th>unit</th>
-                    <th>is_purchased</th>
+                    <th>Mark as Purchased/Delete Item</th>
+                    
                 </tr>
             </thead>
             <tbody>

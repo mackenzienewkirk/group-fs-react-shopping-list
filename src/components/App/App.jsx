@@ -33,6 +33,7 @@ function App() {
                 {/* <ItemForm getItems={getItems} /> */}
                 <ItemForm getItems={getItems} />
                 <ItemList itemList={itemList} getItems={getItems}/>
+
                 {/* <ItemPurchase getItems={getItems} /> */}
             </main>
         </div>
