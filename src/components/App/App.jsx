@@ -8,6 +8,7 @@ import { useState, useEffect } from 'react';
 >>>>>>> b2e96bdf724dac3ab029fd06275e5cbb7e246322
 import Header from '../Header/Header.jsx'
 import ItemList from '../ItemList/ItemList.jsx'
+import ItemForm from '../ItemForm/ItemForm.jsx';
 import './App.css';
 
 function App() {
@@ -34,6 +35,7 @@ function App() {
             <main>
                 <p>Under Construction...</p>
                 {/* <ItemForm getItems={getItems} /> */}
+                <ItemForm getItems={getItems} />
                 <ItemList itemList={itemList} />
                 {/* <ItemPurchase getItems={getItems} /> */}
             </main>
