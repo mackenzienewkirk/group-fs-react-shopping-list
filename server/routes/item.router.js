@@ -16,28 +16,11 @@ router.get('/', (req,res) => {
         })
 });
 
-
-
-// router.put('/items/keyid?', (req, res) => {
-//     const idToUpdate = req.params.id;  //figure out keys
-//     const newRender = req.body.render;  //figure out react put
-    
-//     let sqlQuery = `
-//         UPDATE "shopping_list"
-//         SET "is_purchased"=$1
-//         WHERE "id"=$2
-//     `
-//     let sqlValues = [purchaseChange, idToUpdate];
-
-// itemRouter
-
 // Setup a POST route to add a new item to the database
 router.post('/', (req, res) => {
     const item = req.body;
     const sqlText = `INSERT INTO shopping_list ("name", "quantity", "unit", "is_purchased")
-                     VALUES ($1, $2, $3, $4)`;
-    // Let sql sanitize your inputs (NO Bobby Drop Tables here!)
-    // the $1, $2, etc get substituted with the values from the array below
+                    VALUES ($1, $2, $3, $4)`;
     pool.query(sqlText, [item.name, item.quantity, item.unit, item.is_purchased])
         .then((result) => {
             console.log(`Added item to the database`, item);
@@ -48,16 +31,38 @@ router.post('/', (req, res) => {
             res.sendStatus(500); // Good server always responds
         })
 })
+router.put('/:id', (req, res) => {
+    const idToUpdate = req.params.id;  //figure out keys
+    const newRender = req.body.render;  //figure out react put
+    
+    let sqlQuery = `
+        UPDATE "shopping_list"
+        SET "is_purchased"=$1
+        WHERE "id"=$2
+    `
+    let sqlValues = [purchaseChange, idToUpdate];
+        pool.query(sqlQuery, sqlValues)
+        .then((dbRes) => {
+        res.sendStatus(200);
+    })
+        .catch((dbErr) => {
+        console.log('Error in render PUT', dbErr);
+    });
+});
 
-
-
-//     pool.query(sqlQuery, sqlValues)
-//         .then((dbRes) => {
-//             res.sendStatus(200);
-//         })
-//         .catch((dbErr) => {
-//             console.log('Error in render PUT', dbErr);
-//         });
+//! router.delete(`/:id`, (req, res) => {
+//     let id = req.params.id;
+//     let sqlQuery = `
+//     DELETE FROM "shopping_list"
+//     WHERE "id"=$1;
+//     `
+//     pool.query(sqlQuery, [id])
+//     .then((dbRes) => {
+//         res.sendStatus(204);
+//     }).catch((dbErr) => {
+//         console.log(`Error in /items router DELETE`, dbErr);
+//         res.sendStatus(500);
+//     });
 // });
 
 
